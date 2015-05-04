@@ -2,7 +2,14 @@
 
 ## What is this?
 
-A boilerplate for building new apps using [React][react] and [React Router][rr].
+A minimalist boilerplate for scoffolding new web apps. Comes with RethinkDB as the persistence layer. User signup comes pre-configured.
+
+## Stack
+
+* React
+* Socket.io
+* Express
+* RethinkDB
 
 #### What's included
 
@@ -12,7 +19,6 @@ A boilerplate for building new apps using [React][react] and [React Router][rr].
 * Stylus
 * Markdown
 * Babel
-* Hot reloads on JS / Stylus changes
 
 ## Usage
 
