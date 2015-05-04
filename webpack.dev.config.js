@@ -1,13 +1,10 @@
 /**
- * Webpack production configuration.
+ * Webpack configuration.
  *
  * For more info check out the [docs][1] as well as [this article][2].
  *
  * [1]: http://webpack.github.io/docs/
  * [2]: http://thetrendythings.com/read/20178
- *
- * TODO: There is a lot in here that's repeated in ./webpack.config.dev.js so it
- * would be a good idea to DRY out these two files
  */
 
 var webpack = require('webpack');
@@ -17,11 +14,15 @@ var axis        = require('axis');
 var rupture     = require('rupture');
 var typographic = require('typographic');
 
-var WEBPACK_URL = 'http://localhost:3000/'; // Trailing slash is important
+var WEBPACK_URL = 'http://localhost:8080/'; // Trailing slash is important
 
 module.exports = {
 
+  devtool: 'eval',
+
   entry: [
+    'webpack-dev-server/client?' + WEBPACK_URL,
+    'webpack/hot/only-dev-server',
     './client/index'
   ],
 
@@ -36,13 +37,8 @@ module.exports = {
   },
 
   plugins: [
-
-    // Minify
-    new webpack.optimize.UglifyJsPlugin({ compressor: { warnings: false } }),
-    new webpack.optimize.DedupePlugin(),
-
-    // Don't reload on errors
-    new webpack.NoErrorsPlugin()
+    new webpack.HotModuleReplacementPlugin(), // Enable HMR
+    new webpack.NoErrorsPlugin() // Don't reload on errors
   ],
 
   // If you want to use files with the actual JSX extension add it to the list
