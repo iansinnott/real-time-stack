@@ -1,12 +1,12 @@
 'use strict';
 
-var express    = require('express'),
-    morgan     = require('morgan'),
-    bodyParser = require('body-parser');
+var express    = require('express');
+var morgan     = require('morgan');
+var bodyParser = require('body-parser');
 
 var app    = express();
 var api    = require('./api');
-var config = require('../webpack.config');
+var devConfig = require('../webpack.dev.config');
 
 // Configure the server
 app.use(express.static(__dirname + '/public', { index: false }));
@@ -24,7 +24,7 @@ app.use('/api', api);
 // API.
 app.get('*', function(req, res) {
   res.render('index.jade', {
-    publicPath: config.output.publicPath
+    publicPath: devConfig.output.publicPath
   });
 });
 
